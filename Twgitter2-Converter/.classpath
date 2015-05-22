@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+  <classpathentry kind="src" path="src/test/java" output="target/test-classes" including="**/*.java"/>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="var" path="M2_REPO/net/s/twgitter2/api/Twgitter-API/a0.1/Twgitter-API-a0.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/net/s/twgitter2/gui/Twgitter-GUI/a0.1/Twgitter-GUI-a0.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/twitter4j/twitter4j-core/4.0.3/twitter4j-core-4.0.3.jar"/>
+  <classpathentry kind="lib" path="lib/irclib.jar"/>
+</classpath>

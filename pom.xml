@@ -19,6 +19,7 @@
     <module>Twgitter2-Converter</module>
     <module>Twgitter2-GUI</module>
     <module>Twgitter2-Main</module>
+    <module>Twgitter2-Util</module>
   </modules>
   
   <build>

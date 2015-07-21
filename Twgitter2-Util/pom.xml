@@ -5,11 +5,11 @@
   <parent>
     <groupId>net.s.twgitter2</groupId>
     <artifactId>Twgitter2</artifactId>
-    <version>a0.1</version>
+    <version>0.0.1-alpha</version>
   </parent>
-  <groupId>net.s.twgitter2</groupId>
+  <groupId>net.s.twgitter2.util</groupId>
   <artifactId>Twgitter2-Util</artifactId>
-  <version>a0.1</version>
+  <version>0.0.1-alpha</version>
   <name>Twgitter2-Util</name>
   <url>http://maven.apache.org</url>
   <properties>

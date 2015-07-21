@@ -4,7 +4,7 @@
 
   <groupId>net.s.twgitter2</groupId>
   <artifactId>Twgitter2</artifactId>
-  <version>a0.1</version>
+  <version>0.0.1-alpha</version>
   <packaging>pom</packaging>
 
   <name>Twgitter2</name>
@@ -21,7 +21,7 @@
     <module>Twgitter2-Main</module>
     <module>Twgitter2-Util</module>
   </modules>
-  
+
   <build>
     <plugins>
       <plugin>

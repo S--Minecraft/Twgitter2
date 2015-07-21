@@ -5,27 +5,17 @@
   <parent>
     <groupId>net.s.twgitter2</groupId>
     <artifactId>Twgitter2</artifactId>
-    <version>a0.1</version>
+    <version>0.0.1-alpha</version>
   </parent>
   <groupId>net.s.twgitter2.gui</groupId>
   <artifactId>Twgitter2-GUI</artifactId>
-  <version>a0.1</version>
+  <version>0.0.1-alpha</version>
   <name>Twgitter2-GUI</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-    <dependency>
-      <groupId>net.s.twgitter2.api</groupId>
-      <artifactId>Twgitter-API</artifactId>
-      <version>a0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>net.s.twgitter2.converter</groupId>
-      <artifactId>Twgitter-Converter</artifactId>
-      <version>a0.1</version>
-    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

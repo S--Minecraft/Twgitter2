@@ -5,27 +5,16 @@
   <parent>
     <groupId>net.s.twgitter2</groupId>
     <artifactId>Twgitter2</artifactId>
-    <version>a0.1</version>
+    <version>0.0.1-alpha</version>
   </parent>
   <groupId>net.s.twgitter2.converter</groupId>
   <artifactId>Twgitter2-Converter</artifactId>
-  <version>a0.1</version>
   <name>Twgitter2-Converter</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-    <dependency>
-      <groupId>net.s.twgitter2.api</groupId>
-      <artifactId>Twgitter-API</artifactId>
-      <version>a0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>net.s.twgitter2.gui</groupId>
-      <artifactId>Twgitter-GUI</artifactId>
-      <version>a0.1</version>
-    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -38,11 +27,11 @@
       <version>4.0.3</version>
     </dependency>
     <dependency>
-        <groupId>org.schwering.irc.lib</groupId>
+        <groupId>org.schwering</groupId>
         <artifactId>irclib</artifactId>
-        <version>1.10</version>
-        <scope>system</scope>
-        <systemPath>${basedir}/lib/irclib.jar</systemPath>
+        <version>2.0.0.Alpha3</version>
+        <optional>true</optional>
     </dependency>
   </dependencies>
+  <version>0.0.1-alpha</version>
 </project>

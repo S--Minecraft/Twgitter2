@@ -5,22 +5,17 @@
   <parent>
     <groupId>net.s.twgitter2</groupId>
     <artifactId>Twgitter2</artifactId>
-    <version>a0.1</version>
+    <version>0.0.1-alpha</version>
   </parent>
   <groupId>net.s.twgitter2.main</groupId>
   <artifactId>Twgitter2-Main</artifactId>
-  <version>a0.1</version>
+  <version>0.0.1-alpha</version>
   <name>Twgitter2-Main</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-    <dependency>
-      <groupId>net.s.twgitter2.gui</groupId>
-      <artifactId>Twgitter-GUI</artifactId>
-      <version>a0.1</version>
-    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

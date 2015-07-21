@@ -12,9 +12,5 @@ Croudia(https://croudia.com/),
 Gittter(https://gitter.im/),  
 IRC(http://en.wikipedia.org/wiki/Internet_Relay_Chat), and  
 Slack(https://slack.com/).  
-
+  
 ========
-
-### Setup
-- Download IRCLib from "http://moepii.sourceforge.net/"
-- Put irclib.jar to ./lib

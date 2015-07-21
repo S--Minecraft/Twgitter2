@@ -2,7 +2,6 @@
 /.metadata
 /lib/irclib.jar
 /RemoteSystemsTempFiles
-/*.gitignore
 
 *.project
 *.prefs

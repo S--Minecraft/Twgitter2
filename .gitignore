@@ -2,7 +2,9 @@
 /.metadata
 /lib/irclib.jar
 /RemoteSystemsTempFiles
-
+/node_modules
+/bin
+/old
 *.project
 *.prefs
 *.project

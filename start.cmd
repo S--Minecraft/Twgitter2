@@ -2,4 +2,4 @@
 :: start
 
 npm start
-exit
+exit /b

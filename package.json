@@ -4,9 +4,9 @@
   "description": "2nd version of Twgitter the client for twitter, gitter, and so on.  ",
   "main": "bin/twgitter2/gui/core.html",
   "scripts": {
+    "install": "node_modules\\.bin\\node-java-maven",
     "start": "nw",
-    "build": "build.bat",
-    "gulp": "gulp.bat"
+    "compile": "gulp"
   },
   "repository": {
     "type": "git",

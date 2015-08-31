@@ -1,0 +1,44 @@
+{
+  "name": "Twgitter2",
+  "version": "0.0.1-alpha",
+  "description": "2nd version of Twgitter the client for twitter, gitter, and so on.  ",
+  "main": "bin/twgitter2/gui/core.html",
+  "scripts": {
+    "start": "nw",
+    "build": "build.bat",
+    "gulp": "gulp.bat"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/S--Minecraft/Twgitter2.git"
+  },
+  "author": "S",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/S--Minecraft/Twgitter2/issues"
+  },
+  "homepage": "https://github.com/S--Minecraft/Twgitter2",
+  "dependencies": {
+    "nw": "*",
+    "coffee-script": "*",
+    "node-java-maven": "*",
+    "gulp": "*",
+    "gulp-coffee": "*",
+    "gulp-sass": "*",
+    "gulp-haml": "*"
+  },
+  "java": {
+    "dependencies": [
+      {
+        "groupId": "org.twitter4j",
+        "artifactId": "twitter4j-core",
+        "version": "4.0.3"
+      },
+      {
+        "groupId": "org.schwering",
+        "artifactId": "irclib",
+        "version": "2.0.0.Alpha3"
+      }
+    ]
+  }
+}

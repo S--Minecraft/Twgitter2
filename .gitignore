@@ -5,7 +5,9 @@
 /node_modules
 /bin
 /old
+/lib
 *.project
 *.prefs
 *.project
 *.classpath
+/target/

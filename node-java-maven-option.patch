@@ -1,0 +1,25 @@
+diff --git a/node_modules/node-java-maven/index.js b/node_modules/node-java-maven/index.js
+index 8a27a6f..3ff8913 100644
+--- a/node_modules/node-java-maven/index.js
++++ b/node_modules/node-java-maven/index.js
+@@ -29,7 +29,6 @@ module.exports = function(/*options, callback*/) {
+       url: 'http://central.maven.org/maven2/'
+     }
+   ];
+-  options.localRepository = options.localRepository || path.join(getUserHome(), '.m2/repository');
+   options.concurrency = options.concurrency || 10;
+
+   var dependencies = {};
+@@ -60,6 +59,12 @@ module.exports = function(/*options, callback*/) {
+         return callback(new Error("java.dependencies property in package.json must be an array."));
+       }
+
++      if (packageJson.java.options.localRepository) {
++        options.localRepository = packageJson.java.options.localRepository;
++      } else {
++        options.localRepository = path.join(getUserHome(), '.m2/repository');
++      }
++
+       return packageJson.java.dependencies.forEach(function(d) {
+         dependencyQueuePush(Dependency.createFromObject(d, 'package.json'));
+       });

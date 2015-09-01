@@ -1,7 +1,7 @@
 {
   "name": "Twgitter2",
   "version": "0.0.1-alpha",
-  "description": "2nd version of Twgitter the client for twitter, gitter, and so on.  ",
+  "description": "2nd version of Twgitter the client for twitter, gitter, and so on.",
   "main": "bin/twgitter2/gui/core.html",
   "scripts": {
     "install": "node_modules\\.bin\\node-java-maven",
@@ -38,7 +38,15 @@
         "groupId": "org.schwering",
         "artifactId": "irclib",
         "version": "2.0.0.Alpha3"
+      },
+      {
+        "groupId": "org.json",
+        "artifactId": "json",
+        "version": "20141113"
       }
-    ]
+    ],
+    "options": {
+      "localRepository": "lib"
+    }
   }
 }

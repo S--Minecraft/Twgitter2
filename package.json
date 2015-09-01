@@ -23,6 +23,7 @@
     "coffee-script": "*",
     "node-java-maven": "*",
     "gulp": "*",
+    "gulp-plumber": "*",
     "gulp-coffee": "*",
     "gulp-sass": "*",
     "gulp-haml": "*"

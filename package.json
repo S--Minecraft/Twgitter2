@@ -26,7 +26,8 @@
     "gulp-plumber": "*",
     "gulp-coffee": "*",
     "gulp-sass": "*",
-    "gulp-haml": "*"
+    "gulp-haml": "*",
+    "gulp-shell": "*"
   },
   "java": {
     "dependencies": [

@@ -17,17 +17,21 @@ Slack(https://slack.com/).
 
 ## dependencies
 nw
--  for making exe file from node
+-  for making gui from node
 
 node-java-maven
 -  for using maven with node
 
 gulp
 -  for compiling node
+ + gulp-plumber
+  - for doing better with gulp watch task
  + gulp-coffee
  + gulp-sass
  + gulp-haml
   - for compiling coffeescript/sass/haml
+ + gulp-shell
+  - for compilling java
 
 coffee-script
 -  for executing gulp

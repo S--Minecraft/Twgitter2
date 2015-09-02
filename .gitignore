@@ -6,6 +6,9 @@
 /bin
 /old
 /lib
+/release
+/prerelease
+/nw
 *.project
 *.prefs
 *.project

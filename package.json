@@ -6,7 +6,8 @@
   "scripts": {
     "install": "node_modules\\.bin\\node-java-maven",
     "start": "nw",
-    "compile": "gulp"
+    "compile": "gulp",
+    "prerelease": "gulp webkit"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,8 @@
     "gulp-coffee": "*",
     "gulp-sass": "*",
     "gulp-haml": "*",
-    "gulp-shell": "*"
+    "gulp-shell": "*",
+    "gulp-nw-builder": "*"
   },
   "java": {
     "dependencies": [

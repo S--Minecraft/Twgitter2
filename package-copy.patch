@@ -1,0 +1,13 @@
+diff --git a/bin/package.json b/bin/package.json
+index 13690aa..0139497 100644
+--- a/bin/package.json
++++ b/bin/package.json
+@@ -2,7 +2,7 @@
+   "name": "Twgitter2",
+   "version": "0.0.1-alpha",
+   "description": "2nd version of Twgitter the client for twitter, gitter, and so on.",
+-  "main": "bin/twgitter2/gui/core.html",
++  "main": "twgitter2/gui/core.html",
+   "scripts": {
+     "install": "node_modules\\.bin\\node-java-maven",
+     "start": "nw",

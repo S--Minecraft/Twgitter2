@@ -32,6 +32,8 @@ gulp
   - for compiling coffeescript/sass/haml
  + gulp-shell
   - for compilling java
+ + gulp-nw-builder
+  - for making exe files and so on
 
 coffee-script
 -  for executing gulp

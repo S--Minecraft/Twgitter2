@@ -16,8 +16,8 @@ hamlSrc = "src/twgitter2/gui/**/*.haml"
 hamlBin = "bin/twgitter2/gui"
 scssSrc = "src/twgitter2/gui/css/**/*.scss"
 scssBin = "bin/twgitter2/gui/css"
-javaSrc = "*.java"
-javaBin = "./"
+javaSrc = "src/*.java"
+javaBin = "bin"
 
 # タスク定義
 gulp.task "coffee", ->

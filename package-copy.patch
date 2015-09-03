@@ -1,5 +1,5 @@
 diff --git a/bin/package.json b/bin/package.json
-index 13690aa..0139497 100644
+index b77f2e3..3a3e5e8 100644
 --- a/bin/package.json
 +++ b/bin/package.json
 @@ -2,7 +2,7 @@
@@ -11,3 +11,11 @@ index 13690aa..0139497 100644
    "scripts": {
      "install": "node_modules\\.bin\\node-java-maven",
      "start": "nw",
+@@ -55,6 +55,6 @@
+   },
+   "window": {
+     "title": "Twgitter2",
+-    "icon": "bin/twgitter2/gui/img/icon.png"
++    "icon": "twgitter2/gui/img/icon.png"
+   }
+ }

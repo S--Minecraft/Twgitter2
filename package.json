@@ -23,13 +23,14 @@
     "nw": "*",
     "coffee-script": "*",
     "node-java-maven": "*",
+    "nw-wrap": "*",
     "gulp": "*",
     "gulp-plumber": "*",
     "gulp-coffee": "*",
     "gulp-sass": "*",
     "gulp-haml": "*",
     "gulp-shell": "*",
-    "gulp-nw-builder": "*"
+    "nw-builder": "*"
   },
   "java": {
     "dependencies": [
@@ -52,5 +53,9 @@
     "options": {
       "localRepository": "lib"
     }
+  },
+  "window": {
+    "title": "Twgitter2",
+    "icon": "bin/twgitter2/gui/img/icon.png"
   }
 }

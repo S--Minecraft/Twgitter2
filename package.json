@@ -25,6 +25,7 @@
     "node-java-maven": "0.0.8",
     "gulp": "*",
     "gulp-plumber": "*",
+    "gulp-changed": "*",
     "gulp-coffee": "*",
     "gulp-sass": "*",
     "gulp-haml": "*",

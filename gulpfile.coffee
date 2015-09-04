@@ -4,6 +4,7 @@ packageJson = require "./package.json"
 del = require "del"
 gulp = require "gulp"
 plumber = require "gulp-plumber"
+changed = require "gulp-changed"
 coffee = require "gulp-coffee"
 sass = require "gulp-sass"
 haml = require "gulp-haml"
@@ -40,24 +41,28 @@ imgBinP = "bin-plugins"
 gulp.task "coffee", ->
   return gulp.src(coffeeSrc)
     .pipe(plumber())
+    .pipe(changed(coffeeBin))
     .pipe(coffee())
     .pipe(gulp.dest(coffeeBin))
 
 gulp.task "haml", ->
   return gulp.src(hamlSrc)
     .pipe(plumber())
+    .pipe(changed(hamlBin))
     .pipe(haml())
     .pipe(gulp.dest(hamlBin))
 
 gulp.task "scss", ->
   return gulp.src(scssSrc)
     .pipe(plumber())
+    .pipe(changed(scssBin))
     .pipe(sass())
     .pipe(gulp.dest(scssBin))
 
 gulp.task "java", ->
   return gulp.src(javaSrc)
     .pipe(plumber())
+    .pipe(changed(javaBin))
     .pipe(shell([
       "javac -d <%= pathFix(file.path) %> <%= file.path %>"
     ], {
@@ -70,11 +75,13 @@ gulp.task "java", ->
 gulp.task "img", ->
   return gulp.src(imgSrc)
     .pipe(plumber())
+    .pipe(changed(imgBin))
     .pipe(gulp.dest(imgBin))
 
 gulp.task "package.json", ->
   return gulp.src("package.json")
     .pipe(gulp.dest("src"))
+    .pipe(changed("bin"))
     .pipe(gulp.dest("bin"))
 
 ###
@@ -83,12 +90,14 @@ gulp.task "package.json", ->
 gulp.task "coffee-p", ->
   return gulp.src(coffeeSrcP)
     .pipe(plumber())
+    .pipe(changed(coffeeBinP))
     .pipe(coffee())
     .pipe(gulp.dest(coffeeBinP))
 
 gulp.task "java-p", ->
   return gulp.src(javaSrcP)
     .pipe(plumber())
+    .pipe(changed(javaBinP))
     .pipe(shell([
       "javac -d <%= pathFix(file.path) %> <%= file.path %>"
     ], {
@@ -101,18 +110,21 @@ gulp.task "java-p", ->
 gulp.task "haml-p", ->
   return gulp.src(hamlSrcP)
     .pipe(plumber())
+    .pipe(changed(hamlBinP))
     .pipe(haml())
     .pipe(gulp.dest(hamlBinP))
 
 gulp.task "scss-p", ->
   return gulp.src(scssSrcP)
     .pipe(plumber())
+    .pipe(changed(scssBinP))
     .pipe(sass())
     .pipe(gulp.dest(scssBinP))
 
 gulp.task "img-p", ->
   return gulp.src(imgSrcP)
     .pipe(plumber())
+    .pipe(changed(imgBinP))
     .pipe(gulp.dest(imgBinP))
 
 ###

@@ -1,11 +1,13 @@
 # モジュール読み込み
 path = require "path"
+packageJson = require "./package.json"
 gulp = require "gulp"
 plumber = require "gulp-plumber"
 coffee = require "gulp-coffee"
 sass = require "gulp-sass"
 haml = require "gulp-haml"
 shell = require "gulp-shell"
+electron = require "electron-packager"
 
 # ソース位置定義
 coffeeSrc = "src/twgitter2/**/*.coffee"
@@ -14,8 +16,8 @@ hamlSrc = "src/twgitter2/gui/**/*.haml"
 hamlBin = "bin/twgitter2/gui"
 scssSrc = "src/twgitter2/gui/css/**/*.scss"
 scssBin = "bin/twgitter2/gui/css"
-javaSrc = "src/*.java"
-javaBin = "bin"
+javaSrc = "src/twgitter2/**/*.java"
+javaBin = "bin/twgitter2"
 imgSrc = "src/twgitter2/gui/img/**"
 imgBin = "bin/twgitter2/gui/img"
 
@@ -46,7 +48,7 @@ gulp.task "java", ->
     ], {
       "templateData": {
         pathFix: (s) ->
-          return path.resolve(javaBin, path.relative(path.dirname(javaSrc), path.dirname(s)))
+          return path.resolve(javaBin, path.relative(path.dirname(javaSrc.replace("**","")), path.dirname(s)))
       }
     }))
 
@@ -55,29 +57,50 @@ gulp.task "img", ->
     .pipe(plumber())
     .pipe(gulp.dest(imgBin))
 
-###
 gulp.task "package.json", ->
   return gulp.src("package.json")
+    .pipe(gulp.dest("src"))
     .pipe(gulp.dest("bin"))
-    .pipe(shell([
-      "git apply package-copy.patch"
-    ]))
-###
 
-# 監視
+###
+  監視
+###
 gulp.task "watch", ["default"], ->
   gulp.watch coffeeSrc, ["coffee"]
   gulp.watch hamlSrc, ["haml"]
   gulp.watch scssSrc, ["scss"]
   gulp.watch javaSrc, ["java"]
   gulp.watch imgSrc, ["img"]
-  #gulp.watch "package.json", ["package.json"]
+  gulp.watch "package.json", ["package.json"]
   return
 
-# 実行定義
-tasks = ["coffee", "haml", "scss", "java", "img"] #, "package.json"]
+###
+  実行定義
+###
+tasks = ["coffee", "haml", "scss", "java", "img", "package.json"]
 gulp.task "default", tasks, ->
-  console.log "done"
   return
 
-# リリース定義
+###
+  リリース定義
+###
+# electronの作成
+gulp.task "electron", ["default"], (cb) ->
+  electron({
+    name: packageJson.name,
+    "app-version": packageJson.version,
+    version: "0.31.2",
+    overwrite: true,
+    dir: "./bin",
+    cache: "./cache",
+    out: "./prerelease",
+    platform: ["win32"],
+    arch: "ia32"
+  }, (err, appPath) ->
+    if err?
+      console.log err
+    console.log "Packed: #{appPath}"
+    cb()
+    return
+  )
+  return

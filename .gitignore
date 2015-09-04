@@ -10,8 +10,10 @@
 /release
 /prerelease
 /nw
+/cache
 *.project
 *.prefs
 *.project
 *.classpath
 /target/
+/src/package.json

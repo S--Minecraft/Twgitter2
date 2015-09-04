@@ -2,10 +2,10 @@
   "name": "Twgitter2",
   "version": "0.0.1-alpha",
   "description": "2nd version of Twgitter the client for twitter, gitter, and so on.",
-  "main": "bin/twgitter2/gui/core.html",
+  "main": "twgitter2/core/core.js",
   "scripts": {
     "install": "node_modules\\.bin\\node-java-maven",
-    "start": "nw",
+    "start": "node_modules\\electron-prebuilt\\dist\\electron.exe bin",
     "compile": "gulp",
     "prerelease": "gulp webkit"
   },
@@ -21,13 +21,15 @@
   "homepage": "https://github.com/S--Minecraft/Twgitter2",
   "dependencies": {
     "coffee-script": "*",
-    "node-java-maven": "*",
+    "electron-prebuilt": "*",
+    "node-java-maven": "0.0.8",
     "gulp": "*",
     "gulp-plumber": "*",
     "gulp-coffee": "*",
     "gulp-sass": "*",
     "gulp-haml": "*",
-    "gulp-shell": "*"
+    "gulp-shell": "*",
+    "electron-packager": "*"
   },
   "java": {
     "dependencies": [

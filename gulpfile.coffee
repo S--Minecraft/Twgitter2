@@ -22,7 +22,21 @@ javaBin = "bin/twgitter2"
 imgSrc = "src/twgitter2/gui/img/**"
 imgBin = "bin/twgitter2/gui/img"
 
+coffeeSrcP = "src-plugins/**/*.coffee"
+coffeeBinP = "bin-plugins"
+javaSrcP = "src-plugins/**/*.java"
+javaBinP = "bin-plugins"
+hamlSrcP = "src-plugins/**/*.haml"
+hamlBinP = "bin-plugins"
+scssSrcP = "src-plugins/**/*.scss"
+scssBinP = "bin-plugins"
+imgSrcP = "src-plugins/**/*.{png,jpg,jpeg,gif,bmp}"
+imgBinP = "bin-plugins"
+
 # タスク定義
+###
+  本体
+###
 gulp.task "coffee", ->
   return gulp.src(coffeeSrc)
     .pipe(plumber())
@@ -64,6 +78,44 @@ gulp.task "package.json", ->
     .pipe(gulp.dest("bin"))
 
 ###
+  plugin
+###
+gulp.task "coffee-p", ->
+  return gulp.src(coffeeSrcP)
+    .pipe(plumber())
+    .pipe(coffee())
+    .pipe(gulp.dest(coffeeBinP))
+
+gulp.task "java-p", ->
+  return gulp.src(javaSrcP)
+    .pipe(plumber())
+    .pipe(shell([
+      "javac -d <%= pathFix(file.path) %> <%= file.path %>"
+    ], {
+      "templateData": {
+        pathFix: (s) ->
+          return path.resolve(javaBinP, path.relative(path.dirname(javaSrcP.replace("**","")), path.dirname(s)))
+      }
+    }))
+
+gulp.task "haml-p", ->
+  return gulp.src(hamlSrcP)
+    .pipe(plumber())
+    .pipe(haml())
+    .pipe(gulp.dest(hamlBinP))
+
+gulp.task "scss-p", ->
+  return gulp.src(scssSrcP)
+    .pipe(plumber())
+    .pipe(sass())
+    .pipe(gulp.dest(scssBinP))
+
+gulp.task "img-p", ->
+  return gulp.src(imgSrcP)
+    .pipe(plumber())
+    .pipe(gulp.dest(imgBinP))
+
+###
   clean処理
 ###
 gulp.task "clean", (cb) ->
@@ -99,6 +151,14 @@ gulp.task "watch", ["default"], ->
   gulp.watch "package.json", ["package.json"]
   return
 
+gulp.task "watch-p", ["default-p"], ->
+  gulp.watch coffeeSrcP, ["coffee-p"]
+  gulp.watch javaSrcP, ["java-p"]
+  gulp.watch hamlSrcP, ["haml-p"]
+  gulp.watch scssSrcP, ["scss-p"]
+  gulp.watch imgSrcP, ["img-p"]
+  return
+
 ###
   実行定義
 ###
@@ -106,9 +166,20 @@ tasks = ["coffee", "haml", "scss", "java", "img", "package.json"]
 gulp.task "default", tasks, ->
   return
 
+tasksP = ["coffee-p", "haml-p", "scss-p", "java-p", "img-p"]
+gulp.task "default-p", tasksP, ->
+  return
+
 ###
   リリース定義
 ###
+# 同封pluginの作成
+gulp.task "pack-p", ["default-p", "electron"], ->
+  p = gulp.src("bin-plugins")
+  p.pipe(gulp.dest("prerelease/Twgitter2-win32-ia32/plugins"))
+  # Todo: パスをelectronのコードから読み取るようにする
+  return
+
 # electronの作成
 gulp.task "electron", ["default"], (cb) ->
   electron({
@@ -129,3 +200,9 @@ gulp.task "electron", ["default"], (cb) ->
     return
   )
   return
+
+# pluginを含んだelectronの作成
+gulp.task "prerelease", ["pack-p"], ->
+  return
+
+# Todo: 不要ファイルを消してreleaseをビルドする

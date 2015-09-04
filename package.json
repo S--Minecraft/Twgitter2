@@ -29,7 +29,8 @@
     "gulp-sass": "*",
     "gulp-haml": "*",
     "gulp-shell": "*",
-    "electron-packager": "*"
+    "electron-packager": "*",
+    "del": "*"
   },
   "java": {
     "dependencies": [

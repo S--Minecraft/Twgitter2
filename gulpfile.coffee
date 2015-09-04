@@ -1,6 +1,7 @@
 # モジュール読み込み
 path = require "path"
 packageJson = require "./package.json"
+del = require "del"
 gulp = require "gulp"
 plumber = require "gulp-plumber"
 coffee = require "gulp-coffee"
@@ -61,6 +62,30 @@ gulp.task "package.json", ->
   return gulp.src("package.json")
     .pipe(gulp.dest("src"))
     .pipe(gulp.dest("bin"))
+
+###
+  clean処理
+###
+gulp.task "clean", (cb) ->
+  del [
+    "./bin"
+  ], cb
+  return
+
+gulp.task "clean-p", (cb) ->
+  del [
+    "./bin-plugins"
+  ], cb
+  return
+
+gulp.task "clean-prerelease", (cb) ->
+  del [
+    "./prerelease"
+  ], cb
+  return
+
+gulp.task "clean-all",["clean", "clean-p", "clean-prerelease"], ->
+  return
 
 ###
   監視

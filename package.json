@@ -33,6 +33,7 @@
     "gulp-sass": "*",
     "gulp-haml": "*",
     "gulp-shell": "*",
+    "gulp-prettify": "*",
     "electron-packager": "*",
     "del": "*"
   },

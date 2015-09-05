@@ -10,6 +10,7 @@ coffee = require "gulp-coffee"
 sass = require "gulp-sass"
 haml = require "gulp-haml"
 shell = require "gulp-shell"
+prettify = require "gulp-prettify"
 electron = require "electron-packager"
 
 # ソース位置定義
@@ -60,6 +61,7 @@ gulp.task "haml", ->
     .pipe(plumber())
     .pipe(changed(hamlBin))
     .pipe(haml())
+    .pipe(prettify({indent_size: 2}))
     .pipe(gulp.dest(hamlBin))
 
 gulp.task "scss", ->
@@ -122,6 +124,7 @@ gulp.task "haml-p", ->
     .pipe(plumber())
     .pipe(changed(hamlBinP))
     .pipe(haml())
+    .pipe(prettify({indent_size: 2}))
     .pipe(gulp.dest(hamlBinP))
 
 gulp.task "scss-p", ->

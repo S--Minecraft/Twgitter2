@@ -6,7 +6,12 @@
   %body
     %h1 test
     you're now using node-webkit!!
+    %br
     node.js
     %script
-      document.write(process.version)
-    .
+      document.write(" " + process.version);
+    %br
+    %script
+      var app = require("remote").require("app");
+      document.write(app.getName() + " ");
+      document.write(app.getVersion());

@@ -38,6 +38,8 @@ gulp
   - for compiling coffeescript/sass/haml
  + gulp-shell
   - for compiling java
+ + gulp-prettify
+  - for formating html from haml
 
 electron-packager
 - for packing with electron

@@ -37,6 +37,7 @@ imgBinP = "bin-plugins"
 
 # パッケージング設定
 electronVer = "0.31.2"
+electronIcon = "./icon.ico"
 electronSrc = "./bin"
 electronCache = "./build-res/cache"
 electronBin = "./build-res/prerelease"
@@ -207,11 +208,24 @@ gulp.task "electron", ["default"], (cb) ->
   electron({
     name: packageJson.name,
     "app-version": packageJson.version,
+    "app-bundle-id": "s.#{packageJson.name}.app",
+    "helper-bundle-id": "s.#{packageJson.name}.app",
     version: electronVer,
+    ### ファイルが読み込めないというエラーが発生する
+    icon: electronIcon,
+    "version-string": {
+      ProductName: packageJson.name,
+      ProductVersion: packageJson.version,
+      FileDescription: packageJson.description,
+      CompanyName: packageJson.author,
+      LegalCopyright: "(C) #{packageJson.author} 2015-"
+    }
+    ###
     overwrite: true,
     dir: electronSrc,
     cache: electronCache,
     out: electronBin,
+    prune: true,
     platform: electronPlatform,
     arch: electronArch
   }, (err, appPath) ->

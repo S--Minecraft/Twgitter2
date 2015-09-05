@@ -5,6 +5,7 @@
 # モジュール読み込み
 app = require "app"
 Window = require "browser-window"
+client = require("electron-connect").client
 ut = require "./util.js"
 Pipe = require("../pipe/pipe.js").Pipe
 
@@ -28,6 +29,9 @@ app.on "ready", ->
     # guiの終了
     mainWindow = null
     return
+  `//removeIf(production)`
+  client.create(mainWindow, {sendBounds: false})
+  `//endRemoveIf(production)`
   return
 
 # gui終了時

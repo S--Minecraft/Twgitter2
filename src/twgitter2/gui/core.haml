@@ -3,6 +3,11 @@
   %head
     %meta(charset="utf-8")
     %link(rel="stylesheet" type="text/css" href="css/core.css")
+    -# ライブ リロード用コード
+    <!--removeIf(production)-->
+    %script
+      require("electron-connect").client.create()
+    <!--endremoveIf(production)-->
   %body
     %h1 test
     you're now using node-webkit!!

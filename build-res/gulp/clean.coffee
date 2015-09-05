@@ -14,7 +14,7 @@ gulp.task "clean-p", (cb) ->
   return
 
 gulp.task "clean-prerelease", (cb) ->
-  del ["./build-res/prerelease"], cb
+  del ["./build-res/prerelease", "./build-res/bin"], cb
   return
 
 gulp.task "clean-all",["clean", "clean-p", "clean-prerelease"], ->

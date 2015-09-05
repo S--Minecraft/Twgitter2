@@ -23,10 +23,10 @@
     "fs-extra": "*"
   },
   "devDependencies": {
-    "coffee-script": "*",
-    "electron-prebuilt": "*",
+    "coffee-script": "1.9.x",
+    "electron-prebuilt": "5.0.x",
     "node-java-maven": "0.0.8",
-    "gulp": "*",
+    "gulp": "3.9.x",
     "gulp-plumber": "*",
     "gulp-changed": "*",
     "gulp-coffee": "*",
@@ -34,8 +34,8 @@
     "gulp-haml": "*",
     "gulp-shell": "*",
     "gulp-prettify": "*",
-    "electron-packager": "*",
-    "del": "*"
+    "electron-packager": "5.0.x",
+    "del": "2.0.x"
   },
   "java": {
     "dependencies": [

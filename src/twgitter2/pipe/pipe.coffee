@@ -7,13 +7,14 @@
 util = require "util"
 path = require "path"
 readline = require "readline"
+app = require "app"
 spawn = require("child_process").spawn
 ut = require "../core/util.js"
 
 # 読み込むjavaの開始クラス
 startClassName = "Test"
-startClassPath = "core" #クラスがある場所のbinからの相対パス jarファイル等
-classPath = path.resolve("bin/twgitter2", startClassPath)
+startClassPath = "twgitter2/core" #クラスがある場所のbinからの相対パス jarファイル等
+classPath = path.resolve(app.getAppPath(), startClassPath)
 
 # 受信処理
 fJava = (text) ->
@@ -27,32 +28,38 @@ fJava = (text) ->
       ut.console.java(text)
   return
 
-class Java
+class Pipe
   # javaを実行開始
-  constructor: (name) ->
-    @name = name
-    ut.debug.log "path: " + classPath
+  constructor: ->
+    ut.console.debug "Loading", "java"
     # 子プロセスのjavaを生成
-    java = spawn("java", ["-classpath", classPath, startClassName])
+    java = spawn("java",["-classpath", classPath, startClassName])
     # 標準出力を受信する
     @javaRl = readline.createInterface({
-      input: java.stdin,
-      output: java.stdout
+      input: java.stdout,  # 通常と逆
+      output: java.stdin
     })
     # 受信時
     @javaRl.on "line", (text) ->
+      ut.console.debug "Detected Java", "#{text}"
       fJava(text)
       return
     # 終了時
     @javaRl.on "close", ->
-      ut.console.debug "Java Closed"
+      ut.console.debug "Closed","java"
+      return
+    # エラー時
+    java.on "error", (e) ->
+      ut.console.debug "Error Java", e.message
       return
     return
+
   write: (type, text) ->
     if typeof text is "object"
       @javaRl.write("[Node]#{type}: #{JSON.stringify(text)}")
     else
       @javaRl.write("[Node]#{type}: #{text}")
+    ut.console.debug "Written node",text
     return
 
-exports = Java
+exports.Pipe = Pipe

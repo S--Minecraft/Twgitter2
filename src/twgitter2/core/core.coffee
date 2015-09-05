@@ -6,26 +6,24 @@
 app = require "app"
 Window = require "browser-window"
 ut = require "./util.js"
-pipe = require "../pipe/pipe.js"
-listener = require "../path/listener.js"
+Pipe = require("../pipe/pipe.js").Pipe
 
 # 変数
 mainWindow = null
 
 # javaを開始
-ut.console.debug "starting java"
-java = new pipe()
+java = new Pipe()
 
 # guiを起動
 app.on "ready", ->
-  ut.console.debug "app ready"
+  ut.console.debug "Ready","app"
   mainWindow = new Window({
     width: 800,
     height: 600
   })
   mainWindow.loadUrl("file://#{__dirname}/../gui/core.html")
   mainWindow.openDevTools()
-  ut.console.debug "gui loaded"
+  ut.console.debug "Loaded","gui"
   mainWindow.on "closed", ->
     # guiの終了
     mainWindow = null

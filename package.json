@@ -7,7 +7,7 @@
     "install": "node_modules\\.bin\\node-java-maven",
     "start": "node_modules\\electron-prebuilt\\dist\\electron.exe bin",
     "compile": "gulp",
-    "prerelease": "gulp webkit"
+    "prerelease": "gulp prerelease"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/S--Minecraft/Twgitter2",
   "dependencies": {
+    "fs-extra": "*"
+  },
+  "devDependencies": {
     "coffee-script": "*",
     "electron-prebuilt": "*",
     "node-java-maven": "0.0.8",

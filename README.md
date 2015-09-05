@@ -1,5 +1,6 @@
 # Twgitter2
 2nd version of Twgitter the client for twitter, gitter, and so on.
+It's made in electron and node.js and Java.
 
 ========
 
@@ -16,8 +17,11 @@ Slack(https://slack.com/).
 ========
 
 ## dependencies
-nw
--  for making gui from node
+fs-extra
+- for using fs better
+
+electron-prebuilt
+- for executing without packing
 
 node-java-maven
 -  for using maven with node
@@ -26,14 +30,20 @@ gulp
 -  for compiling node
  + gulp-plumber
   - for doing better with gulp watch task
+ + gulp-changed
+  - for compiling only changed files
  + gulp-coffee
  + gulp-sass
  + gulp-haml
   - for compiling coffeescript/sass/haml
  + gulp-shell
-  - for compilling java
- + gulp-nw-builder
-  - for making exe files and so on
+  - for compiling java
+
+electron-packager
+- for packing with electron
+
+del
+- for cleaning in gulp
 
 coffee-script
 -  for executing gulp

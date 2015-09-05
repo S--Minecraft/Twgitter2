@@ -1,5 +1,6 @@
 # モジュール読み込み
 path = require "path"
+fs = require "fs"
 packageJson = require "./package.json"
 del = require "del"
 gulp = require "gulp"
@@ -33,6 +34,14 @@ scssSrcP = "src-plugins/**/*.scss"
 scssBinP = "bin-plugins"
 imgSrcP = "src-plugins/**/*.{png,jpg,jpeg,gif,bmp}"
 imgBinP = "bin-plugins"
+
+# パッケージング設定
+electronVer = "0.31.2"
+electronSrc = "./bin"
+electronCache = "./build-res/cache"
+electronBin = "./build-res/prerelease"
+electronPlatform = ["win32", "darwin", "linux"]
+electronArch = ["ia32", "x64"]
 
 # タスク定義
 ###
@@ -187,9 +196,10 @@ gulp.task "default-p", tasksP, ->
 ###
 # 同封pluginの作成
 gulp.task "pack-p", ["default-p", "electron"], ->
-  p = gulp.src("bin-plugins")
-  p.pipe(gulp.dest("prerelease/Twgitter2-win32-ia32/plugins"))
-  # Todo: パスをelectronのコードから読み取るようにする
+  p = gulp.src("bin-plugins/**")
+  for platform in electronPlatform
+    for arch in electronArch
+      p.pipe(gulp.dest(path.join(electronBin, "#{packageJson.name}-#{platform}-#{arch}/plugins")))
   return
 
 # electronの作成
@@ -197,13 +207,13 @@ gulp.task "electron", ["default"], (cb) ->
   electron({
     name: packageJson.name,
     "app-version": packageJson.version,
-    version: "0.31.2",
+    version: electronVer,
     overwrite: true,
-    dir: "./bin",
-    cache: "./cache",
-    out: "./prerelease",
-    platform: ["win32"],
-    arch: "ia32"
+    dir: electronSrc,
+    cache: electronCache,
+    out: electronBin,
+    platform: electronPlatform,
+    arch: electronArch
   }, (err, appPath) ->
     if err?
       console.log err
@@ -217,4 +227,5 @@ gulp.task "electron", ["default"], (cb) ->
 gulp.task "prerelease", ["pack-p"], ->
   return
 
+# Todo: libのビルド
 # Todo: 不要ファイルを消してreleaseをビルドする

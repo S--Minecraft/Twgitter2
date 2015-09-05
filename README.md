@@ -3,12 +3,12 @@
 It's made in electron and node.js and Java.
 
 This is a client for
-Twitter(https://twitter.com/),
-App.net(https://app.net/),
-Croudia(https://croudia.com/),
-Gittter(https://gitter.im/),
-IRC(http://en.wikipedia.org/wiki/Internet_Relay_Chat), and
-Slack(https://slack.com/).
+[Twitter](https://twitter.com/),
+[App.net](https://app.net/),
+[Croudia](https://croudia.com/),
+[Gittter](https://gitter.im/),
+[IRC](http://en.wikipedia.org/wiki/Internet_Relay_Chat), and
+[Slack](https://slack.com/).
 
 ========
 ## build

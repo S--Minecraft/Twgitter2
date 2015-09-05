@@ -1,5 +1,5 @@
 @echo off
 :: prerelease
 
-npm run prerelease
+npm run compile electron
 exit /b

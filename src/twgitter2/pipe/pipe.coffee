@@ -6,27 +6,60 @@
 ###
 util = require "util"
 path = require "path"
+readline = require "readline"
+app = require "app"
 spawn = require("child_process").spawn
-nwwp = require "nw-wrap"
-ut = require(path.resolve("./twgitter2/core/util.js"))
+ut = require "../core/util.js"
 
-# 読み込むjavaの開始クラス (process.argv[1]はcore.jsの絶対パス)
+# 読み込むjavaの開始クラス
 startClassName = "Test"
-startClassPath = "" #クラスがある場所のbinからの相対パス jarファイル等
-classPath = path.resolve("./", "#{startClassPath}")
-console.log "path: " + classPath
+startClassPath = "twgitter2/core" #クラスがある場所のbinからの相対パス jarファイル等
+classPath = path.resolve(app.getAppPath(), startClassPath)
 
-# javaを実行開始して、標準入出力を共有
-exports.start = ->
-  # nodejsの標準入出力を開く
-  nwwr.stdin.resume() #process.stdin.resume()
-  # 子プロセスのjavaを生成
-  java = spawn("java", ["-classpath", classPath, startClassName])
-  java.stdin.on("close", ->
-    ut.console.debug "Java Closed"
-    return
-  )
-  # 相互転送
-  nwwr.stdin.pipe(java.stdin) #process.stdin.pipe(java.stdin)
-  java.stdout.pipe(nwwr.stdout) #java.stdout.pipe(process.stdout)
+# 受信処理
+fJava = (text) ->
+  messageReg = /\[Message\]/g
+  debugReg = /\[Debug\]/g
+  switch true
+    when messageReg.test(text)
+      obj = JSON.parse(text.replace(messageReg, ""))
+      # 受け取ったものの処理
+    when debugReg.test(text)
+      ut.console.java(text)
   return
+
+class Pipe
+  # javaを実行開始
+  constructor: ->
+    ut.console.debug "Loading", "java"
+    # 子プロセスのjavaを生成
+    java = spawn("java",["-classpath", classPath, startClassName])
+    # 標準出力を受信する
+    @javaRl = readline.createInterface({
+      input: java.stdout,  # 通常と逆
+      output: java.stdin
+    })
+    # 受信時
+    @javaRl.on "line", (text) ->
+      ut.console.debug "Detected Java", "#{text}"
+      fJava(text)
+      return
+    # 終了時
+    @javaRl.on "close", ->
+      ut.console.debug "Closed","java"
+      return
+    # エラー時
+    java.on "error", (e) ->
+      ut.console.debug "Error Java", e.message
+      return
+    return
+
+  write: (type, text) ->
+    if typeof text is "object"
+      @javaRl.write("[Node]#{type}: #{JSON.stringify(text)}")
+    else
+      @javaRl.write("[Node]#{type}: #{text}")
+    ut.console.debug "Written node",text
+    return
+
+exports.Pipe = Pipe

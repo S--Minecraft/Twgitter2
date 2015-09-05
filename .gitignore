@@ -1,16 +1,26 @@
+# git
 /.git
-/.metadata
-/lib/irclib.jar
-/RemoteSystemsTempFiles
+
+# node.js
 /node_modules
-/bin
-/old
-/lib
-/release
-/prerelease
-/nw
-*.project
+/npm-debug.log
+
+# java
+/RemoteSystemsTempFiles
+/.metadata
 *.prefs
 *.project
 *.classpath
+/lib
+
+# build
+/src/package.json
+/bin
+/bin-plugins
+/build-res/cache
+/build-res/prerelease
+/release
+
+# other
 /target/
+/old

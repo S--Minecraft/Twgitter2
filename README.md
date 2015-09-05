@@ -1,12 +1,8 @@
-# Twgitter2
+# Twgitter2 [![GitHub version](https://badge.fury.io/gh/S--Minecraft%2FTwgitter2.svg)](http://badge.fury.io/gh/S--Minecraft%2FTwgitter2) ![David Badge](https://david-dm.org/S--Minecraft/Twgitter2.svg "David Badge") ![David Dev Badge](https://david-dm.org/s--minecraft/twgitter2/dev-status.svg "David Dev Badge")
 2nd version of Twgitter the client for twitter, gitter, and so on.
 It's made in electron and node.js and Java.
 
-========
-
-A client.
-
-This is a java/node.js made client for
+This is a client for
 Twitter(https://twitter.com/),
 App.net(https://app.net/),
 Croudia(https://croudia.com/),
@@ -15,6 +11,12 @@ IRC(http://en.wikipedia.org/wiki/Internet_Relay_Chat), and
 Slack(https://slack.com/).
 
 ========
+## build
+```
+git clone --recursive git://github.com/S--Minecraft/Twgitter2.git
+cd Twgitter2
+npm install
+```
 
 ## dependencies
 fs-extra

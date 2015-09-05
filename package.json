@@ -7,8 +7,7 @@
     "install": "git apply build-res/node-java-maven-option.patch",
     "postinstall": "node_modules\\.bin\\node-java-maven",
     "start": "node_modules\\electron-prebuilt\\dist\\electron.exe bin",
-    "compile": "gulp",
-    "prerelease": "gulp prerelease"
+    "compile": "gulp"
   },
   "repository": {
     "type": "git",

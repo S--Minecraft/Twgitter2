@@ -8,8 +8,14 @@ electron = require "electron-packager"
 packageJson = require "../../package.json"
 config = require "./config.coffee"
 
+# リリース用のためにコピー
+gulp.task "copy-release", ["default"], ->
+  gulp.src(["bin/**"])
+    .pipe(gulp.dest(config.electron.src))
+  return
+
 # electronの作成
-gulp.task "electron", ["default"], (cb) ->
+gulp.task "electron", ["copy-release"], (cb) ->
   electron({
     name: packageJson.name,
     "app-version": packageJson.version,

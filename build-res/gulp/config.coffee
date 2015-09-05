@@ -32,7 +32,7 @@ path = {
 electron = {
   ver : "0.31.2",
   icon : "./icon.ico",
-  src : "./bin",
+  src : "./build-res/bin",
   cache : "./build-res/cache",
   bin : "./build-res/prerelease",
   platform : ["win32", "darwin", "linux"],

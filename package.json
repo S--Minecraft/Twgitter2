@@ -25,6 +25,7 @@
   "devDependencies": {
     "coffee-script": "1.9.x",
     "electron-prebuilt": "5.0.x",
+    "require-dir": "*",
     "node-java-maven": "0.0.8",
     "gulp": "3.9.x",
     "gulp-plumber": "*",

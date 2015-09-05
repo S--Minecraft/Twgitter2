@@ -17,6 +17,7 @@
 /src/package.json
 /bin
 /bin-plugins
+/build-res/bin
 /build-res/cache
 /build-res/prerelease
 /release

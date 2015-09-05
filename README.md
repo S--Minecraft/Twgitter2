@@ -12,7 +12,7 @@ Slack(https://slack.com/).
 
 ========
 ## build
-```
+```cmd
 git clone --recursive git://github.com/S--Minecraft/Twgitter2.git
 cd Twgitter2
 npm install
@@ -31,17 +31,17 @@ node-java-maven
 gulp
 -  for compiling node
  + gulp-plumber
-  - for doing better with gulp watch task
+   - for doing better with gulp watch task
  + gulp-changed
-  - for compiling only changed files
+   - for compiling only changed files
  + gulp-coffee
  + gulp-sass
  + gulp-haml
-  - for compiling coffeescript/sass/haml
+   - for compiling coffeescript/sass/haml
  + gulp-shell
-  - for compiling java
+   - for compiling java
  + gulp-prettify
-  - for formating html from haml
+   - for formating html from haml
 
 electron-packager
 - for packing with electron

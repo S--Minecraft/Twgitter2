@@ -1,5 +1,5 @@
 @echo off
 :: install
 
-npm install
+npm install %*
 exit /b

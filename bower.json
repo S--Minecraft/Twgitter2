@@ -1,0 +1,43 @@
+{
+  "name": "Twgitter2",
+  "version": "0.0.1-alpha",
+  "homepage": "https://github.com/S--Minecraft/Twgitter2",
+  "authors": [
+    "S <S@mail.minecraft.jp.net>"
+  ],
+  "description": "2nd version of Twgitter the client for twitter, gitter, and so on.",
+  "main": "twgitter2/core/core.js",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "license": "Apache-2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bin",
+    "bin-plugins",
+    "build-res/bin",
+    "build-res/cache",
+    "build-res/prerelease",
+    "lib"
+  ],
+  "devDependencies": {
+    "backbone": "*",
+    "jquery": "*",
+    "uikit": "*",
+    "underscore": "*"
+  },
+  "exportsOverride": {
+    "backbone": {
+      "js": "underscore-min.js"
+    },
+    "jquery": {
+      "js": "jquery.min.js"
+    },
+    "underscore": {
+      "js": "underscore-min.js"
+    }
+  }
+}

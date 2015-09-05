@@ -5,6 +5,9 @@
 /node_modules
 /npm-debug.log
 
+# bower
+bower_components
+
 # java
 /RemoteSystemsTempFiles
 /.metadata

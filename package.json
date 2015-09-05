@@ -23,6 +23,7 @@
     "fs-extra": "*"
   },
   "devDependencies": {
+    "bower": "*",
     "coffee-script": "1.9.x",
     "electron-prebuilt": "5.0.x",
     "require-dir": "*",

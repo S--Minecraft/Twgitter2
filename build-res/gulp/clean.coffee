@@ -6,16 +6,12 @@ gulp = require "gulp"
 config = require "./config.coffee"
 
 gulp.task "clean", (cb) ->
-  del ["./bin"], cb
-  return
+  return del ["./bin"], cb
 
 gulp.task "clean-p", (cb) ->
-  del ["./bin-plugins"], cb
-  return
+  return del ["./bin-plugins"], cb
 
 gulp.task "clean-prerelease", (cb) ->
-  del ["./build-res/prerelease"], cb
-  return
+  return del ["./build-res/prerelease"], cb
 
-gulp.task "clean-all",["clean", "clean-p", "clean-prerelease"], ->
-  return
+gulp.task "clean-all",["clean", "clean-p", "clean-prerelease"]

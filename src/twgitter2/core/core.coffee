@@ -7,9 +7,13 @@ app = require "app"
 Window = require "browser-window"
 ut = require "./util.js"
 Pipe = require("../pipe/pipe.js").Pipe
+Log = require "./log.js"
 
 # 変数
 mainWindow = null
+
+# ロガーを開始
+Log.start()
 
 # javaを開始
 java = new Pipe()

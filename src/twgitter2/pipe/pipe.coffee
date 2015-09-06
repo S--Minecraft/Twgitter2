@@ -26,6 +26,8 @@ fJava = (text) ->
       # 受け取ったものの処理
     when debugReg.test(text)
       ut.console.java(text)
+    else
+      ut.console.java("Other: #{text}")
   return
 
 class Pipe

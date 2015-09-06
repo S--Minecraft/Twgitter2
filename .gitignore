@@ -25,6 +25,9 @@ bower_components
 /build-res/prerelease
 /release
 
+#exec
+/config
+
 # other
 /target/
 /old

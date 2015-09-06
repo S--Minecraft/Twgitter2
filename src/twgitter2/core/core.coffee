@@ -6,7 +6,7 @@
 app = require "app"
 Window = require "browser-window"
 ut = require "./util.js"
-Pipe = require("../pipe/pipe.js").Pipe
+Pipe = require("../pipe/pipe.js")
 Log = require "./log.js"
 
 # 変数

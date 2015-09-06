@@ -64,4 +64,4 @@ class Pipe
     ut.console.debug "Written node",text
     return
 
-exports.Pipe = Pipe
+module.exports = Pipe

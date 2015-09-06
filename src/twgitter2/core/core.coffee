@@ -25,7 +25,7 @@ app.on "ready", ->
     width: 800,
     height: 600
   })
-  mainWindow.loadUrl("file://#{__dirname}/../gui/core.html")
+  mainWindow.loadUrl("file://#{app.getAppPath()}/twgitter2/gui/core.html")
   mainWindow.openDevTools()
   ut.console.debug "Loaded","gui"
   mainWindow.on "closed", ->

@@ -67,8 +67,8 @@ gulp
    - for compiling java
  + gulp-prettify
    - for formating html from haml
- + gulp-watchify
-   - for compressing node modules
+ + gulp-webpack
+   - for compressing javascripts
 
 electron-packager
 - for packing with electron

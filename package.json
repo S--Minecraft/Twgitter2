@@ -38,7 +38,7 @@
     "gulp-haml": "*",
     "gulp-shell": "*",
     "gulp-prettify": "*",
-    "gulp-watchify": "*",
+    "gulp-webpack": "*",
     "electron-packager": "5.0.x",
     "main-bower-files": "*",
     "version-comparison": "*"

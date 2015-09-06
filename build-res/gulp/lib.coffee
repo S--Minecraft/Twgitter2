@@ -56,28 +56,6 @@ gulp.task "lib-java-del", ["lib-java-copy"], ->
 # javaのライブラリの同封
 gulp.task "lib-java", ["lib-java-del"]
 
-# nodeのモジュールの同封・圧縮
-gulp.task "lib-node", watchify( (watchify) ->
-  folders = Object.keys(packageJson.dependencies)
-  mainFiles = []
-  for folder in folders
-    json = fs.readJsonSync("node_modules/#{folder}/package.json")
-    fs.copySync("node_modules/#{folder}/package.json", config.electron.src + "/node_modules/#{folder}/package.json")
-    if json.main?
-      main = json.main
-      if path.extname(main) is ""
-        main += ".js"
-    else
-      main = "index.js"
-    mainFiles.push(path.resolve("node_modules/#{folder}", main))
-  return gulp.src(mainFiles, {base: "node_modules"})
-    .pipe(plumber())
-    .pipe(watchify({
-      watch:false
-    }))
-    .pipe(gulp.dest(config.electron.src + "/node_modules"))
-  )
-
 # bowerの同封
 gulp.task "lib-bower", ->
   return gulp.src(bower())
@@ -85,5 +63,5 @@ gulp.task "lib-bower", ->
     .pipe(changed("#{config.path.hamlBin}/lib"))
     .pipe(gulp.dest("#{config.path.hamlBin}/lib"))
 
-# ライブラリの同封(nodeは除く)
+# ライブラリの同封
 gulp.task "lib", ["lib-java", "lib-bower"]

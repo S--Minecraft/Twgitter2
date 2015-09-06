@@ -9,7 +9,7 @@ packageJson = require "../../package.json"
 config = require "./config.coffee"
 
 # リリース用のためにコピー
-gulp.task "copy-release", ["default"], ->
+gulp.task "copy-release", ["default", "lib-node"], ->
   gulp.src(["bin/**"])
     .pipe(gulp.dest(config.electron.src))
   return

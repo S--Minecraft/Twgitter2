@@ -23,21 +23,21 @@
     "build-res/prerelease",
     "lib"
   ],
-  "devDependencies": {
+  "dependencies": {
     "backbone": "*",
     "jquery": "*",
     "uikit": "*",
     "underscore": "*"
   },
-  "exportsOverride": {
+  "overrides": {
     "backbone": {
-      "js": "underscore-min.js"
+      "main": "backbone-min.js"
     },
     "jquery": {
-      "js": "jquery.min.js"
+      "main": "jquery.min.js"
     },
     "underscore": {
-      "js": "underscore-min.js"
+      "main": "underscore-min.js"
     }
   }
 }

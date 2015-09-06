@@ -4,8 +4,8 @@
   "description": "2nd version of Twgitter the client for twitter, gitter, and so on.",
   "main": "twgitter2/core/core.js",
   "scripts": {
-    "install": "git apply build-res/node-java-maven-option.patch",
-    "postinstall": "node_modules\\.bin\\node-java-maven",
+    "install-": "git apply build-res/node-java-maven-option.patch",
+    "install--": "node_modules\\.bin\\node-java-maven && node_modules\\.bin\\bower install",
     "start": "node_modules\\electron-prebuilt\\dist\\electron.exe bin",
     "compile": "gulp"
   },
@@ -20,24 +20,28 @@
   },
   "homepage": "https://github.com/S--Minecraft/Twgitter2",
   "dependencies": {
-    "fs-extra": "*"
+    "fs-extra": "*",
+    "del": "*"
   },
   "devDependencies": {
     "bower": "*",
     "coffee-script": "1.9.x",
-    "electron-prebuilt": "5.0.x",
+    "electron-prebuilt": "0.31.x",
     "require-dir": "*",
     "node-java-maven": "0.0.8",
     "gulp": "3.9.x",
     "gulp-plumber": "*",
     "gulp-changed": "*",
+    "gulp-flatten": "*",
     "gulp-coffee": "*",
     "gulp-sass": "*",
     "gulp-haml": "*",
     "gulp-shell": "*",
     "gulp-prettify": "*",
+    "gulp-watchify": "*",
     "electron-packager": "5.0.x",
-    "del": "2.0.x"
+    "main-bower-files": "*",
+    "version-comparison": "*"
   },
   "java": {
     "dependencies": [

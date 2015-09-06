@@ -16,17 +16,40 @@ This is a client for
 git clone --recursive git://github.com/S--Minecraft/Twgitter2.git
 cd Twgitter2
 npm install
+npm run install- #モジュールアップデート時は必要ありません
+npm run install--
+```
+
+### compile
+```cmd
+compile
+```
+
+### start
+```
+start
+```
+
+### pack
+```cmd
+prerelease
 ```
 
 ## dependencies
+bower
+- for managing browser javascript libraries
+
+node-java-maven
+-  for using maven with node
+
 fs-extra
 - for using fs better
 
 electron-prebuilt
 - for executing without packing
 
-node-java-maven
--  for using maven with node
+require-dir
+- for requiring directories in gulp
 
 gulp
 -  for compiling node
@@ -34,6 +57,8 @@ gulp
    - for doing better with gulp watch task
  + gulp-changed
    - for compiling only changed files
+ + gulp-flatten
+   - for copying java libraries
  + gulp-coffee
  + gulp-sass
  + gulp-haml
@@ -42,6 +67,8 @@ gulp
    - for compiling java
  + gulp-prettify
    - for formating html from haml
+ + gulp-watchify
+   - for compressing node modules
 
 electron-packager
 - for packing with electron
@@ -50,4 +77,10 @@ del
 - for cleaning in gulp
 
 coffee-script
--  for executing gulp
+- for executing gulp
+
+main-bower-files
+- for extracting main files from bower for gulp
+
+version-comparison
+- for comparing versions of maven

@@ -5,7 +5,7 @@
 gulp = require "gulp"
 
 # 本体のコンパイル
-tasks = ["coffee", "haml", "scss", "java", "img", "package.json"]
+tasks = ["coffee", "haml", "scss", "java", "img", "package.json", "lib"]
 gulp.task "default", tasks
 
 # プラグインのコンパイル

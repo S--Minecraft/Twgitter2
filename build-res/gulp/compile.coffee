@@ -56,6 +56,8 @@ gulp.task "img", ->
 
 gulp.task "package.json", ->
   return gulp.src(config.path.packageJsonSrc)
+    .pipe(plumber())
+    .pipe(changed("src"))
     .pipe(gulp.dest("src"))
     .pipe(changed("bin"))
     .pipe(gulp.dest(config.path.packageJsonBin))

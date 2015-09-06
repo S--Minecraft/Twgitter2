@@ -4,6 +4,8 @@
 ###
 path = require "path"
 gulp = require "gulp"
+plumber = require "gulp-plumber"
+changed = require "gulp-changed"
 electron = require "electron-packager"
 packageJson = require "../../package.json"
 config = require "./config.coffee"
@@ -11,6 +13,8 @@ config = require "./config.coffee"
 # リリース用のためにコピー
 gulp.task "copy-release", ["default", "lib-node"], ->
   gulp.src(["bin/**"])
+    .pipe(plumber())
+    .pipe(changed(config.electron.src))
     .pipe(gulp.dest(config.electron.src))
   return
 
@@ -50,7 +54,7 @@ gulp.task "electron", ["copy-release"], (cb) ->
 
 # 同封pluginの作成
 gulp.task "pack-p", ["default-p", "electron"], ->
-  p = gulp.src("bin-plugins/**")
+  p = gulp.src("bin-plugins/**").pipe(plumber())
   for platform in config.electron.platform
     for arch in config.electron.arch
       p.pipe(gulp.dest(path.join(config.electron.bin, "#{packageJson.name}-#{platform}-#{arch}/plugins")))

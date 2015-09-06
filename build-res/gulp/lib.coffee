@@ -5,6 +5,8 @@
 fs = require "fs-extra"
 path = require "path"
 gulp = require "gulp"
+plumber = require "gulp-plumber"
+changed = require "gulp-changed"
 flatten = require "gulp-flatten"
 watchify = require "gulp-watchify"
 bower = require "main-bower-files"
@@ -23,6 +25,8 @@ max = ->
 # javaのライブラリのコピー
 gulp.task "lib-java-copy", ->
   return gulp.src(["lib/**/*.jar"])
+    .pipe(plumber())
+    .pipe(changed("bin/lib"))
     .pipe(flatten())
     .pipe(gulp.dest("bin/lib"))
 
@@ -66,8 +70,8 @@ gulp.task "lib-node", watchify( (watchify) ->
     else
       main = "index.js"
     mainFiles.push(path.resolve("node_modules/#{folder}", main))
-  console.log(mainFiles)
   return gulp.src(mainFiles, {base: "node_modules"})
+    .pipe(plumber())
     .pipe(watchify({
       watch:false
     }))
@@ -77,6 +81,8 @@ gulp.task "lib-node", watchify( (watchify) ->
 # bowerの同封
 gulp.task "lib-bower", ->
   return gulp.src(bower())
+    .pipe(plumber())
+    .pipe(changed("#{config.path.hamlBin}/lib"))
     .pipe(gulp.dest("#{config.path.hamlBin}/lib"))
 
 # ライブラリの同封(nodeは除く)

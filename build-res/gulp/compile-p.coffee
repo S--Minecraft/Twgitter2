@@ -13,14 +13,14 @@ shell = require "gulp-shell"
 prettify = require "gulp-prettify"
 config = require "./config.coffee"
 
-gulp.task "coffee", ->
+gulp.task "coffee-p", ->
   return gulp.src(config.path.coffeeSrcP)
     .pipe(plumber())
     .pipe(changed(config.path.coffeeBinP))
     .pipe(coffee())
     .pipe(gulp.dest(config.path.coffeeBinP))
 
-gulp.task "haml", ->
+gulp.task "haml-p", ->
   return gulp.src(config.path.hamlSrcP)
     .pipe(plumber())
     .pipe(changed(config.path.hamlBinP))
@@ -28,14 +28,14 @@ gulp.task "haml", ->
     .pipe(prettify({indent_size: 2}))
     .pipe(gulp.dest(config.path.hamlBinP))
 
-gulp.task "scss", ->
+gulp.task "scss-p", ->
   return gulp.src(config.path.scssSrcP)
     .pipe(plumber())
     .pipe(changed(config.path.scssBinP))
     .pipe(sass())
     .pipe(gulp.dest(config.path.scssBinP))
 
-gulp.task "java", ->
+gulp.task "java-p", ->
   return gulp.src(config.path.javaSrcP)
     .pipe(plumber())
     .pipe(changed(config.path.javaBinP))
@@ -48,14 +48,8 @@ gulp.task "java", ->
       }
     }))
 
-gulp.task "img", ->
+gulp.task "img-p", ->
   return gulp.src(config.path.imgSrcP)
     .pipe(plumber())
     .pipe(changed(config.path.imgBinP))
     .pipe(gulp.dest(config.path.imgBinP))
-
-gulp.task "package.json", ->
-  return gulp.src(config.path.packageJsonSrcP)
-    .pipe(gulp.dest("src"))
-    .pipe(changed("bin"))
-    .pipe(gulp.dest(config.path.packageJsonBinP))

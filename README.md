@@ -10,8 +10,8 @@ This is a client for
 [IRC](http://en.wikipedia.org/wiki/Internet_Relay_Chat), and
 [Slack](https://slack.com/).
 
-========
 ## build
+事前にgitとNode.jsとJavaのインストールが必要です
 ```cmd
 git clone --recursive git://github.com/S--Minecraft/Twgitter2.git
 cd Twgitter2

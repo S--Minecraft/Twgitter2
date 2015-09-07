@@ -3,10 +3,11 @@
   実行本体
 ###
 # モジュール読み込み
+path = require "path"
 app = require "app"
 Window = require "browser-window"
 ut = require "./util.js"
-Pipe = require("../pipe/pipe.js")
+Pipe = require "../pipe/pipe.js"
 Log = require "./log.js"
 
 # 変数
@@ -23,7 +24,10 @@ app.on "ready", ->
   ut.console.debug "Ready","app"
   mainWindow = new Window({
     width: 800,
-    height: 600
+    height: 600,
+    title: "Twgitter2",
+    icon: path.join(app.getAppPath(), "twgitter2/gui/img/icon.png"),
+    "auto-hide-menu-bar": true
   })
   mainWindow.loadUrl("file://#{app.getAppPath()}/twgitter2/gui/core.html")
   mainWindow.openDevTools()

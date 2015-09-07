@@ -11,8 +11,8 @@ class Log
   }
   @ws : {}
   @start: ->
-    @ws.debug = fs.createOutputStream "config/debug.txt"
-    @ws.java = fs.createOutputStream "config/java.txt"
+    @ws.debug = fs.createOutputStream "config/debug.log"
+    @ws.java = fs.createOutputStream "config/java.log"
 
     return
   @add: (type, text) ->

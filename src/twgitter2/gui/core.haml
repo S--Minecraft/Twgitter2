@@ -2,7 +2,13 @@
 %html{lang: "ja"}
   %head
     %meta(charset="utf-8")
+    %link(rel="stylesheet" type="text/css" href="lib/uikit.min.css")
     %link(rel="stylesheet" type="text/css" href="css/core.css")
+    %script(type="text/javascript")
+      window.jQuery = window.$ = require("./lib/jquery.min.js");
+    %script(type="text/javascript" src="lib/underscore-min.js")
+    %script(type="text/javascript" src="lib/backbone-min.js")
+    %script(type="text/javascript" src="lib/uikit.min.js")
   %body
     %h1 test
     you're now using node-webkit!!

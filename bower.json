@@ -34,7 +34,7 @@
       "main": "backbone-min.js"
     },
     "jquery": {
-      "main": "jquery.min.js"
+      "main": "dist/jquery.min.js"
     },
     "underscore": {
       "main": "underscore-min.js"

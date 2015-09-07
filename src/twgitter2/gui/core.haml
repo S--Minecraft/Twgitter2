@@ -11,13 +11,17 @@
     %script(type="text/javascript" src="lib/uikit.min.js")
   %body
     %h1 test
-    you're now using node-webkit!!
+    You're now using Electron!!
     %br
-    node.js
     %script
-      document.write(" " + process.version);
+      document.write("Node.js: " + process.version);
+    %br
+    %script
+      document.write("Electron: " + process.versions.electron);
+    %br
+    %script
+      document.write("Chromium: " + process.versions.chrome);
     %br
     %script
       var app = require("remote").require("app");
-      document.write(app.getName() + " ");
-      document.write(app.getVersion());
+      document.write(app.getName() + ": " + app.getVersion());

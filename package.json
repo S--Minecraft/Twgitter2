@@ -33,6 +33,7 @@
     "gulp-plumber": "*",
     "gulp-changed": "*",
     "gulp-flatten": "*",
+    "gulp-replace": "*",
     "gulp-coffee": "*",
     "gulp-sass": "*",
     "gulp-haml": "*",

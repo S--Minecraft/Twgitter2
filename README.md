@@ -59,6 +59,8 @@ gulp
    - for compiling only changed files
  + gulp-flatten
    - for copying java libraries
+ + gulp-replace
+   - for fixing path of UIKit with gulp
  + gulp-coffee
  + gulp-sass
  + gulp-haml

@@ -1,3 +1,11 @@
 html, body {
   background: #CCCCCC;
 }
+
+.hidden {
+  display: none;
+}
+
+dt, dd, .button-left {
+  float: left;
+}

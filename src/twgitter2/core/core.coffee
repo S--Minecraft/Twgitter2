@@ -9,6 +9,7 @@ Window = require "browser-window"
 ut = require "./util.js"
 Pipe = require "../pipe/pipe.js"
 Log = require "./log.js"
+profile = require "./profile_core.js"
 
 # 変数
 mainWindow = null
@@ -32,6 +33,17 @@ app.on "ready", ->
   mainWindow.loadUrl("file://#{app.getAppPath()}/twgitter2/gui/core.html")
   mainWindow.openDevTools()
   ut.console.debug "Loaded","gui"
+  # profileのロード
+  profile.load()
+  # 一つだったらそのまま起動、二つ以上または存在しなかったらプロファイルマネージャーも起動
+  if profile.profileJson.length isnt 1
+    ut.console.debug "Loading","profileManager"
+    profileWindow = profile.create()
+    ut.console.debug "Loaded","profileManager"
+    profileWindow.on "closed", ->
+      # guiの終了
+      profileWindow = null
+      return
   mainWindow.on "closed", ->
     # guiの終了
     mainWindow = null

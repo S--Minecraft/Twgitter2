@@ -1,0 +1,39 @@
+!!! 5
+%html{lang: "ja"}
+  %head
+    %meta(charset="utf-8")
+    %link(rel="stylesheet" type="text/css" href="../lib/uikit.min.css")
+    %link(rel="stylesheet" type="text/css" href="../css/core.css")
+    %script(type="text/template" id="profile-template")
+      <dt id="profileName" class="uk-width-3-10"><%- name %></dt>
+      <dd id="profileDesc" class="uk-width-3-10"><%- desc %></dd>
+      <button id="profileEdit" class="uk-width-2-10 uk-button button-left" type="button">編集</button>
+      <button id="profileDelete" class="uk-width-2-10 uk-button uk-button-danger button-left" type="button">削除</button>
+    %script(type="text/javascript")
+      window.jQuery = window.$ = require("../lib/jquery.min.js");
+    %script(type="text/javascript" src="../lib/underscore-min.js")
+    %script(type="text/javascript" src="../lib/backbone-min.js")
+    %script(type="text/javascript" src="../lib/uikit.min.js")
+    %script(type="text/javascript" src="profile.js")
+  %body
+    .uk-container.uk-container-center.uk-margin-top.uk-margin-bottom
+      %h1#title Profile Select
+      -# #list.uk-grid
+      -#   %dl#profile.uk-width-1-1.uk-margin-small-bottom
+      -#     %dt#profileName.uk-width-3-10
+      -#     %dd#profileDesc.uk-width-3-10
+      -#     %button#profileEdit.uk-width-2-10.uk-button.button-left
+      -#     %button#profileDelete.uk-width-2-10.uk-button.uk-button-danger.button-left
+      %button#create.uk-width-1-1.uk-button(data-uk-modal="{bgclose:false}") 新しいプロファイルを作成する
+      #createForm.uk-modal
+        .uk-modal-dialog
+          .uk-modal-header
+            %h2 Profile Editer
+          %form.uk-form
+            %input#name(type="text") プロファイル名
+            %input#desc(type="text") 説明
+            %ul#userList.uk-list.uk-list-line
+            %button#user.uk-button アカウント追加...
+          .uk-modal-footer
+            %button#submit.uk-button.uk-button-primary 保存
+            %button#cancel.uk-button キャンセル

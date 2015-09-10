@@ -81,6 +81,7 @@ gulp.task "pack-p", ->
 
 gulp.task "copy-p", (cb) ->
   return runSequence(
+    "clean-p",
     "default-p",
     "electron",
     "pack-p",

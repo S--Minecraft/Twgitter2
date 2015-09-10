@@ -18,6 +18,7 @@ cd Twgitter2
 npm install
 npm run install- #モジュールアップデート時は必要ありません
 npm run install--
+prerelease #winではない場合は npm run prerelase
 ```
 
 ### compile
@@ -28,11 +29,6 @@ compile
 ### start
 ```
 start
-```
-
-### pack
-```cmd
-prerelease
 ```
 
 ## dependencies

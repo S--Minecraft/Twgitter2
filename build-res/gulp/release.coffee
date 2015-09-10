@@ -24,15 +24,25 @@ gulp.task "copy-release2", ->
     .pipe(changed(config.electron.src))
     .pipe(gulp.dest(config.electron.src))
 # webpackで圧縮
-gulp.task "webpack",  ->
+gulp.task "webpack", ->
   return gulp.src(["bin/**/*.js", "!bin/**/gui/**"])
     .pipe(webpack(require("./webpack.config.coffee")))
     .pipe(gulp.dest(config.electron.src + "/twgitter2/core"))
+# remoteで読み込むjs(間接含む)はコピー
+remote = [
+  "util.js",
+  "profile_core.js",
+  "log.js"
+]
+gulp.task "copy-remote", ->
+  return gulp.src(remote, {cwd: "#{config.path.coffeeBin}/core"})
+    .pipe(gulp.dest("#{config.electron.src}/twgitter2/core"))
 gulp.task "pack", (cb) ->
   return runSequence(
     ["clean", "clean-prebin"],
     "default",
     ["copy-release1", "copy-release2", "webpack"],
+    "copy-remote",
     cb
   )
 

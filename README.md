@@ -16,19 +16,19 @@ This is a client for
 git clone --recursive git://github.com/S--Minecraft/Twgitter2.git
 cd Twgitter2
 npm install
-npm run install- #モジュールアップデート時は必要ありません
+npm run install- #モジュールアップデート時は必要ありません(node-java-mavenの更新時は必要です)
 npm run install--
 prerelease #winではない場合は npm run prerelase
 ```
 
 ### compile
 ```cmd
-compile
+compile #winではない場合は npm run compile
 ```
 
 ### start
 ```
-start
+start #winではない場合は npm start
 ```
 
 ## dependencies

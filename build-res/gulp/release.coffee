@@ -8,24 +8,37 @@ plumber = require "gulp-plumber"
 changed = require "gulp-changed"
 electron = require "electron-packager"
 webpack = require "gulp-webpack"
+runSequence = require "run-sequence"
 packageJson = require "../../package.json"
 config = require "./config.coffee"
 
 # リリース用のためにコピー
-gulp.task "copy-release", ["clean-prebin", "default"], ->
+gulp.task "copy-release1", ->
   return gulp.src(["bin/**", "!bin/**/*.js"])
     .pipe(plumber())
     .pipe(changed(config.electron.src))
     .pipe(gulp.dest(config.electron.src))
-
+gulp.task "copy-release2", ->
+  return gulp.src(["bin/**/gui/**/*.js"])
+    .pipe(plumber())
+    .pipe(changed(config.electron.src))
+    .pipe(gulp.dest(config.electron.src))
 # webpackで圧縮
-gulp.task "webpack", ["clean-prebin", "default"], ->
-  return gulp.src(["bin/**/*.js"])
+gulp.task "webpack",  ->
+  return gulp.src(["bin/**/*.js", "!bin/**/gui/**"])
     .pipe(webpack(require("./webpack.config.coffee")))
     .pipe(gulp.dest(config.electron.src + "/twgitter2/core"))
+gulp.task "pack", (cb) ->
+  return runSequence(
+    ["clean", "clean-prebin"],
+    "default",
+    ["copy-release1", "copy-release2", "webpack"],
+    cb
+  )
+
 
 # electronの作成
-gulp.task "electron", ["copy-release", "webpack"], (cb) ->
+gulp.task "electron", ["pack"], (cb) ->
   electron({
     name: packageJson.name,
     "app-version": packageJson.version,
@@ -59,9 +72,18 @@ gulp.task "electron", ["copy-release", "webpack"], (cb) ->
   return
 
 # 同封pluginの作成
-gulp.task "pack-p", ["default-p", "electron"], ->
+gulp.task "pack-p", ->
   p = gulp.src("bin-plugins/**").pipe(plumber())
   for platform in config.electron.platform
     for arch in config.electron.arch
       p.pipe(gulp.dest(path.join(config.electron.bin, "#{packageJson.name}-#{platform}-#{arch}/plugins")))
   return
+
+gulp.task "copy-p", (cb) ->
+  return runSequence(
+    "default-p",
+    "electron",
+    "pack-p",
+    cb
+  )
+

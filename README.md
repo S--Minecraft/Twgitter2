@@ -68,6 +68,9 @@ gulp
  + gulp-webpack
    - for compressing javascripts
 
+run-sequence
+- for running gulp sync/async
+
 electron-packager
 - for packing with electron
 

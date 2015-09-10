@@ -10,6 +10,7 @@ changed = require "gulp-changed"
 flatten = require "gulp-flatten"
 replace = require "gulp-replace"
 watchify = require "gulp-watchify"
+runSequence = require "run-sequence"
 bower = require "main-bower-files"
 compare = require "version-comparison"
 config = require "./config.coffee"
@@ -32,7 +33,7 @@ gulp.task "lib-java-copy", ->
     .pipe(gulp.dest("bin/lib"))
 
 # 重複のライブラリは最新版を残して削除
-gulp.task "lib-java-del", ["lib-java-copy"], ->
+gulp.task "lib-java-del", ->
   files = fs.readdirSync("bin/lib")
   duplicated = []
   for file in files
@@ -55,7 +56,12 @@ gulp.task "lib-java-del", ["lib-java-copy"], ->
   return
 
 # javaのライブラリの同封
-gulp.task "lib-java", ["lib-java-del"]
+gulp.task "lib-java", (cb) ->
+  return runSequence(
+    "lib-java-copy",
+    "lib-java-del",
+    cb
+  )
 
 # bowerの同封
 gulp.task "lib-bower-all", ->
@@ -65,14 +71,19 @@ gulp.task "lib-bower-all", ->
     .pipe(gulp.dest("#{config.path.hamlBin}/lib"))
 
 # uikitのcssのfontのパスの修正
-gulp.task "lib-bower-fix", ["lib-bower-all"], ->
+gulp.task "lib-bower-fix", ->
   return gulp.src("#{config.path.hamlBin}/lib/uikit.min.css")
     .pipe(plumber())
     .pipe(changed("#{config.path.hamlBin}/lib/uikit.min.css"))
     .pipe(replace(/url\(\.\.\/fonts\//g, "url("))
     .pipe(gulp.dest("#{config.path.hamlBin}/lib"))
 
-gulp.task "lib-bower", ["lib-bower-fix"]
+gulp.task "lib-bower", (cb) ->
+  return runSequence(
+    "lib-bower-all",
+    "lib-bower-fix",
+    cb
+  )
 
 # ライブラリの同封
 gulp.task "lib", ["lib-java", "lib-bower"]

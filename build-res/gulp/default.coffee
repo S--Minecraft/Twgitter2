@@ -13,4 +13,4 @@ tasksP = ["coffee-p", "haml-p", "scss-p", "java-p", "img-p"]
 gulp.task "default-p", tasksP
 
 # pluginを含んだelectronの作成
-gulp.task "prerelease", ["pack-p"]
+gulp.task "prerelease", ["copy-p"]

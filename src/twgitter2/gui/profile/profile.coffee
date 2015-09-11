@@ -3,6 +3,8 @@
   profile.htmlから呼び出す
 ###
 remote = require "remote"
+path = remote.require "path"
+app = remote.require "app"
 profile = remote.require "../core/profile_core.js"
 ut = remote.require "../core/util.js"
 
@@ -53,7 +55,7 @@ $ ->
   # Profilesコレクションを生成
   class Profiles extends Backbone.Collection
     model: Profile
-    url: "../../../../config/profile.json"
+    url: profile.jsonPath
     parse: (res) ->
       if res.error?
         ut.console.debug "Load error", res.error.message

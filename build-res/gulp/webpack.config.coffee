@@ -1,21 +1,6 @@
 webpack = require "webpack"
 packageJson = require "../../package.json"
 config = require "./config.coffee"
+defaultConfig = require "./webpack-default.config.coffee"
 
-module.exports = {
-  entry: {
-    app: "./bin/" + packageJson.main
-  },
-  output: {
-    filename: "core.js"
-  },
-  target: "atom",
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin
-      compress: {
-        warnings: false
-      },
-      sourceMap: false,
-      mangle: true
-  ]
-}
+module.exports = defaultConfig("./bin/" + packageJson.main, "core.js")

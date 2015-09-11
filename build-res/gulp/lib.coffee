@@ -8,13 +8,16 @@ gulp = require "gulp"
 plumber = require "gulp-plumber"
 changed = require "gulp-changed"
 flatten = require "gulp-flatten"
+foreach = require "gulp-foreach"
 replace = require "gulp-replace"
 watchify = require "gulp-watchify"
 runSequence = require "run-sequence"
 bower = require "main-bower-files"
 compare = require "version-comparison"
+webpack = require "gulp-webpack"
 config = require "./config.coffee"
 packageJson = require "../../package.json"
+wpDCfg = require "./webpack-default.config.coffee"
 
 # 配列内バージョンの最新を返す
 max = ->
@@ -31,7 +34,6 @@ gulp.task "lib-java-copy", ->
     .pipe(changed("bin/lib"))
     .pipe(flatten())
     .pipe(gulp.dest("bin/lib"))
-
 # 重複のライブラリは最新版を残して削除
 gulp.task "lib-java-del", ->
   files = fs.readdirSync("bin/lib")
@@ -85,5 +87,48 @@ gulp.task "lib-bower", (cb) ->
     cb
   )
 
-# ライブラリの同封
+###
+# node.jsのモジュールを圧縮/同封
+gulp.task "lib-node-js", ->
+  files = []
+  for key of packageJson.dependencies
+    main = fs.readJsonSync("./node_modules/#{key}/package.json").main
+    if not main?
+      main = "index.js"
+    if path.extname(main) is ""
+      main += ".js"
+    files.push(path.normalize("./node_modules/#{key}/#{main}"))
+  return gulp.src(files)
+    .pipe(foreach( (stream, file) ->
+      fileName = path.basename(file.path)
+      fileOut = path.dirname( path.join(config.electron.src, path.relative("./", file.path)) )
+      return stream
+        .pipe(plumber())
+        .pipe(changed(fileOut))
+        .pipe(webpack(
+            wpDCfg(file.path, fileName)
+        ))
+        .pipe(gulp.dest(fileOut))
+    ))
+# node.jsのモジュールのpackage.jsonを同封
+gulp.task "lib-node-json", ->
+  files = []
+  for key of packageJson.dependencies
+    files.push("./node_modules/#{key}/package.json")
+  return gulp.src(files, {base: "./"})
+    .pipe(plumber())
+    .pipe(changed(config.electron.src))
+    .pipe(gulp.dest(config.electron.src))
+gulp.task "lib-node", ["lib-node-js", "lib-node-json"]
+###
+gulp.task "lib-node", ->
+  files = []
+  for key of packageJson.dependencies
+    files.push("./node_modules/#{key}/**")
+  return gulp.src(files, {base: "./"})
+    .pipe(plumber())
+    .pipe(changed(config.electron.src))
+    .pipe(gulp.dest(config.electron.src))
+
+# ライブラリの同封(node除く)
 gulp.task "lib", ["lib-java", "lib-bower"]

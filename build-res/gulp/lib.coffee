@@ -8,16 +8,13 @@ gulp = require "gulp"
 plumber = require "gulp-plumber"
 changed = require "gulp-changed"
 flatten = require "gulp-flatten"
-foreach = require "gulp-foreach"
 replace = require "gulp-replace"
 watchify = require "gulp-watchify"
 runSequence = require "run-sequence"
 bower = require "main-bower-files"
 compare = require "version-comparison"
-webpack = require "gulp-webpack"
 config = require "./config.coffee"
 packageJson = require "../../package.json"
-wpDCfg = require "./webpack-default.config.coffee"
 
 # 配列内バージョンの最新を返す
 max = ->

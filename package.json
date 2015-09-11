@@ -39,7 +39,6 @@
     "gulp-haml": "*",
     "gulp-shell": "*",
     "gulp-prettify": "*",
-    "gulp-webpack": "*",
     "run-sequence": "*",
     "electron-packager": "5.0.x",
     "main-bower-files": "*",

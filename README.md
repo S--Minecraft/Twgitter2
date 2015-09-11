@@ -65,8 +65,6 @@ gulp
    - for compiling java
  + gulp-prettify
    - for formating html from haml
- + gulp-webpack
-   - for compressing javascripts
 
 run-sequence
 - for running gulp sync/async

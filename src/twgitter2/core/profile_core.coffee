@@ -8,23 +8,22 @@ app = require "app"
 Window = require "browser-window"
 ut = require "./util.js"
 
-jsonPath = "config/profile.json"
-
 module.exports = {
+  jsonPath: path.resolve("config/profile.json")
   # profileのjsonのオブジェクトを格納
   profileJson: []
   # profile.jsonを読み込み
   load: ->
-    if fs.existsSync(jsonPath)
-      @profileJson = fs.readJsonSync(jsonPath)
+    if fs.existsSync(@jsonPath)
+      @profileJson = fs.readJsonSync(@jsonPath)
     else
-      fs.outputFileSync(jsonPath, "[]")
+      fs.outputFileSync(@jsonPath, "[]")
       ut.console.debug "Created", "profile.json"
     ut.console.debug "Loaded", "profile.json"
     return
   # profile.jsonを書き込み
   write: (json) ->
-    fs.writeJson(jsonPath, json, (err) ->
+    fs.writeJson(@jsonPath, json, (err) ->
       if err?
         ut.console.debug "Error", err
     )

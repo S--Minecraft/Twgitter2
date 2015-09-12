@@ -1,4 +1,3 @@
-webpack = require "webpack"
 packageJson = require "../../package.json"
 config = require "./config.coffee"
 defaultConfig = require "./webpack-default.config.coffee"

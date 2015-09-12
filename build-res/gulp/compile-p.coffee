@@ -6,10 +6,11 @@ path = require "path"
 gulp = require "gulp"
 plumber = require "gulp-plumber"
 changed = require "gulp-changed"
+foreach = require "gulp-foreach"
 coffee = require "gulp-coffee"
 sass = require "gulp-sass"
 haml = require "gulp-haml"
-shell = require "gulp-shell"
+exec = require "gulp-exec"
 prettify = require "gulp-prettify"
 config = require "./config.coffee"
 
@@ -39,14 +40,11 @@ gulp.task "java-p", ->
   return gulp.src(config.path.javaSrcP)
     .pipe(plumber())
     .pipe(changed(config.path.javaBinP))
-    .pipe(shell([
-      "javac -d <%= pathFix(file.path) %> <%= file.path %>"
-    ], {
-      "templateData": {
-        pathFix: (s) ->
-          return path.resolve(config.path.javaBinP, path.relative(path.dirname(config.path.javaSrcP.replace("**","")), path.dirname(s)))
-      }
-    }))
+    .pipe(foreach( (stream, file) ->
+      place = path.resolve(config.path.javaBinP, path.relative(path.dirname(config.path.javaSrcP.replace("**","")), path.dirname(file.path)))
+      return stream
+        .pipe(exec("javac -d <%= options.place %> <%= file.path %>", {place: place}))
+    ))
 
 gulp.task "img-p", ->
   return gulp.src(config.path.imgSrcP)

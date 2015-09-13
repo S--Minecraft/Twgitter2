@@ -49,6 +49,8 @@ require-dir
 
 gulp
 -  for compiling node
+ + gulp-notify
+   - for notifying errors when watching
  + gulp-plumber
    - for doing better with gulp watch task
  + gulp-changed

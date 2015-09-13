@@ -5,6 +5,7 @@
 fs = require "fs-extra"
 path = require "path"
 gulp = require "gulp"
+notify = require "gulp-notify"
 plumber = require "gulp-plumber"
 changed = require "gulp-changed"
 flatten = require "gulp-flatten"
@@ -27,7 +28,7 @@ max = ->
 # javaのライブラリのコピー
 gulp.task "lib-java-copy", ->
   return gulp.src(["lib/**/*.jar"])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed("bin/lib"))
     .pipe(flatten())
     .pipe(gulp.dest("bin/lib"))
@@ -65,14 +66,14 @@ gulp.task "lib-java", (cb) ->
 # bowerの同封
 gulp.task "lib-bower-all", ->
   return gulp.src(bower())
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed("#{config.path.hamlBin}/lib"))
     .pipe(gulp.dest("#{config.path.hamlBin}/lib"))
 
 # uikitのcssのfontのパスの修正
 gulp.task "lib-bower-fix", ->
   return gulp.src("#{config.path.hamlBin}/lib/uikit.min.css")
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed("#{config.path.hamlBin}/lib/uikit.min.css"))
     .pipe(replace(/url\(\.\.\/fonts\//g, "url("))
     .pipe(gulp.dest("#{config.path.hamlBin}/lib"))
@@ -100,7 +101,7 @@ gulp.task "lib-node-js", ->
       fileName = path.basename(file.path)
       fileOut = path.dirname( path.join(config.electron.src, path.relative("./", file.path)) )
       return stream
-        .pipe(plumber())
+        .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
         .pipe(changed(fileOut))
         .pipe(webpack(
             wpDCfg(file.path, fileName)
@@ -113,7 +114,7 @@ gulp.task "lib-node-json", ->
   for key of packageJson.dependencies
     files.push("./node_modules/#{key}/package.json")
   return gulp.src(files, {base: "./"})
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed(config.electron.src))
     .pipe(gulp.dest(config.electron.src))
 gulp.task "lib-node", ["lib-node-js", "lib-node-json"]
@@ -123,7 +124,7 @@ gulp.task "lib-node", ->
   for key of packageJson.dependencies
     files.push("./node_modules/#{key}/**")
   return gulp.src(files, {base: "./"})
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed(config.electron.src))
     .pipe(gulp.dest(config.electron.src))
 

@@ -30,6 +30,7 @@
     "require-dir": "*",
     "node-java-maven": "0.0.8",
     "gulp": "3.9.x",
+    "gulp-notify": "*",
     "gulp-plumber": "*",
     "gulp-changed": "*",
     "gulp-flatten": "*",

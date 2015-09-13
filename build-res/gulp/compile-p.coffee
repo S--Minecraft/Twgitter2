@@ -4,6 +4,7 @@
 ###
 path = require "path"
 gulp = require "gulp"
+notify = require "gulp-notify"
 plumber = require "gulp-plumber"
 changed = require "gulp-changed"
 foreach = require "gulp-foreach"
@@ -16,14 +17,14 @@ config = require "./config.coffee"
 
 gulp.task "coffee-p", ->
   return gulp.src(config.path.coffeeSrcP)
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed(config.path.coffeeBinP))
     .pipe(coffee())
     .pipe(gulp.dest(config.path.coffeeBinP))
 
 gulp.task "haml-p", ->
   return gulp.src(config.path.hamlSrcP)
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed(config.path.hamlBinP))
     .pipe(haml())
     .pipe(prettify({indent_size: 2}))
@@ -31,14 +32,14 @@ gulp.task "haml-p", ->
 
 gulp.task "scss-p", ->
   return gulp.src(config.path.scssSrcP)
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed(config.path.scssBinP))
     .pipe(sass())
     .pipe(gulp.dest(config.path.scssBinP))
 
 gulp.task "java-p", ->
   return gulp.src(config.path.javaSrcP)
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed(config.path.javaBinP))
     .pipe(foreach( (stream, file) ->
       place = path.resolve(config.path.javaBinP, path.relative(path.dirname(config.path.javaSrcP.replace("**","")), path.dirname(file.path)))
@@ -48,6 +49,6 @@ gulp.task "java-p", ->
 
 gulp.task "img-p", ->
   return gulp.src(config.path.imgSrcP)
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed(config.path.imgBinP))
     .pipe(gulp.dest(config.path.imgBinP))

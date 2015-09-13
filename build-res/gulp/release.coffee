@@ -4,6 +4,7 @@
 ###
 path = require "path"
 gulp = require "gulp"
+notify = require "gulp-notify"
 plumber = require "gulp-plumber"
 changed = require "gulp-changed"
 electron = require "electron-packager"
@@ -14,7 +15,7 @@ config = require "./config.coffee"
 # リリース用のためにコピー
 gulp.task "copy-release", ->
   return gulp.src(["bin/**"])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed(config.electron.src))
     .pipe(gulp.dest(config.electron.src))
 gulp.task "pack", (cb) ->
@@ -62,7 +63,7 @@ gulp.task "electron", ["pack"], (cb) ->
 
 # 同封pluginの作成
 gulp.task "pack-p", ->
-  p = gulp.src("bin-plugins/**").pipe(plumber())
+  p = gulp.src("bin-plugins/**").pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
   for platform in config.electron.platform
     for arch in config.electron.arch
       p.pipe(gulp.dest(path.join(config.electron.bin, "#{packageJson.name}-#{platform}-#{arch}/plugins")))

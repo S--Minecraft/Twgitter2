@@ -42,9 +42,10 @@ gulp.task "java-p", ->
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed(config.path.javaBinP))
     .pipe(foreach( (stream, file) ->
-      place = path.resolve(config.path.javaBinP, path.relative(path.dirname(config.path.javaSrcP.replace("**","")), path.dirname(file.path)))
+      bin = path.normalize("../bin-plugins")
+      place = path.relative("src-plugins", file.path)
       return stream
-        .pipe(exec("javac -d <%= options.place %> <%= file.path %>", {place: place}))
+        .pipe(exec("cd src-plugins & javac -d <%= options.bin %> <%= options.place %>", {bin: bin, place: place}))
     ))
 
 gulp.task "img-p", ->

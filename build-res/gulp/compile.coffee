@@ -45,7 +45,7 @@ gulp.task "java", ->
       bin = path.normalize("../bin")
       place = path.relative("src", file.path)
       return stream
-        .pipe(exec("cd src & javac -d <%= options.bin %> <%= options.place %>", {bin: bin, place: place}))
+        .pipe(exec("cd src & javac -encoding UTF8 -d <%= options.bin %> <%= options.place %>", {bin: bin, place: place}))
     ))
 
 gulp.task "img", ->

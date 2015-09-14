@@ -12,7 +12,7 @@ class Log
   @ws : {}
   @start: ->
     @ws.debug = fs.createOutputStream "config/debug.log"
-    @ws.java = fs.createOutputStream "config/java.log"
+    @ws.java = fs.createOutputStream "config/fromJava.log"
 
     return
   @add: (type, text) ->

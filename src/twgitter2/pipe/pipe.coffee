@@ -12,20 +12,21 @@ spawn = require("child_process").spawn
 ut = require "../core/util.js"
 
 # 読み込むjavaの開始クラス
-startClassName = "Test"
-startClassPath = "twgitter2/core" #クラスがある場所のbinからの相対パス jarファイル等
-classPath = path.resolve(app.getAppPath(), startClassPath)
+startClass = "twgitter2/core/Core" #クラスがある場所のbinからの相対パス jarファイル等
+classPath = app.getAppPath() #binへのパス
 
 # 受信処理
 fJava = (text) ->
   messageReg = /\[Message\]/g
   debugReg = /\[Debug\]/g
+  nodeReg = /\[Node\]/g
   switch true
     when messageReg.test(text)
       obj = JSON.parse(text.replace(messageReg, ""))
       # 受け取ったものの処理
     when debugReg.test(text)
-      ut.console.java(text)
+      ut.console.java(text.replace(debugReg, ""))
+    when nodeReg.test(text)
     else
       ut.console.java("Other: #{text}")
   return
@@ -35,7 +36,7 @@ class Pipe
   constructor: ->
     ut.console.debug "Loading", "java"
     # 子プロセスのjavaを生成
-    java = spawn("java",["-classpath", classPath, startClassName])
+    java = spawn("java",["-classpath", classPath, startClass])
     # 標準出力を受信する
     @javaRl = readline.createInterface({
       input: java.stdout,  # 通常と逆
@@ -43,12 +44,16 @@ class Pipe
     })
     # 受信時
     @javaRl.on "line", (text) ->
-      ut.console.debug "Detected Java", "#{text}"
+      #ut.console.debug "Detected Java", "#{text}"
       fJava(text)
       return
     # 終了時
     @javaRl.on "close", ->
       ut.console.debug "Closed","java"
+      return
+    # エラー受信時
+    java.stderr.on "data", (data) ->
+      ut.console.debug "Error Java", data
       return
     # エラー時
     java.on "error", (e) ->

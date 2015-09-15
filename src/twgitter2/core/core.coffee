@@ -20,7 +20,7 @@ Log.start()
 # javaを開始
 java = new Pipe()
 
-#java.write "test", "ok"
+java.write "test", "ok"
 
 # guiを起動
 app.on "ready", ->

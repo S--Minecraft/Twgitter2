@@ -36,11 +36,11 @@ class Pipe
   constructor: ->
     ut.console.debug "Loading", "java"
     # 子プロセスのjavaを生成
-    java = spawn("java",["-classpath", classPath, startClass])
+    @java = spawn("java",["-classpath", classPath, startClass])
     # 標準出力を受信する
     @javaRl = readline.createInterface({
-      input: java.stdout,  # 通常と逆
-      output: java.stdin
+      input: @java.stdout,  # 通常と逆
+      output: @java.stdin
     })
     # 受信時
     @javaRl.on "line", (text) ->
@@ -52,20 +52,20 @@ class Pipe
       ut.console.debug "Closed","java"
       return
     # エラー受信時
-    java.stderr.on "data", (data) ->
+    @java.stderr.on "data", (data) ->
       ut.console.debug "Error Java", data
       return
     # エラー時
-    java.on "error", (e) ->
+    @java.on "error", (e) ->
       ut.console.debug "Error Java", e.message
       return
     return
 
   write: (type, text) ->
     if typeof text is "object"
-      @javaRl.write("[Node]#{type}: #{JSON.stringify(text)}")
+      @java.stdin.write("[Node]#{type}: #{JSON.stringify(text)}\n")
     else
-      @javaRl.write("[Node]#{type}: #{text}")
+      @java.stdin.write("[Node]#{type}: #{text}\n")
     ut.console.debug "Written node",text
     return
 
